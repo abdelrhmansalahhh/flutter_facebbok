@@ -1,19 +1,27 @@
  import 'package:flutter/material.dart';
 import 'package:flutter_facebook/models/user_model.dart';
  import 'package:flutter_facebook/widgets/profile_avatar.dart';
+import 'package:flutter_facebook/widgets/responsive.dart';
 
 class CreatePostContainer extends StatelessWidget {
-   final User   currentUser;
+  final User currentUser;
 
   const CreatePostContainer({
-    Key key, 
+    Key key,
     @required this.currentUser,
-   }) : super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
-    return Container(
+    final bool isDesktop = Responsive.isDesktop(context);
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: isDesktop ? 5.0 : 0.0),
+      elevation: isDesktop ? 1.0 : 0.0,
+      shape: isDesktop
+          ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
+          : null,
+      child: Container(
+
         padding:   EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 0.0),
         color: Colors.white,
         child: Column(
@@ -71,6 +79,7 @@ class CreatePostContainer extends StatelessWidget {
           ],
         ),
       
+    )
     );
   }
 }

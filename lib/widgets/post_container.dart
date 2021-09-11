@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook/cofig/palette.dart';
 import 'package:flutter_facebook/models/post_model.dart';
 import 'package:flutter_facebook/widgets/profile_avatar.dart';
+import 'package:flutter_facebook/widgets/responsive.dart';
  
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -16,9 +17,17 @@ class PostContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      
-    return Container(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
+    final bool isDesktop = Responsive.isDesktop(context);
+    return Card(
+      margin: EdgeInsets.symmetric(
+        vertical: 5.0,
+        horizontal: isDesktop ? 5.0 : 0.0,
+      ),
+      elevation: isDesktop ? 1.0 : 0.0,
+      shape: isDesktop
+          ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
+          : null,
+      child: Container(        padding: const EdgeInsets.symmetric(vertical: 8.0),
         color: Colors.white,
         child: Column(
           children: [
@@ -49,7 +58,7 @@ class PostContainer extends StatelessWidget {
           ],
         ),
       
-    );
+    ));
   }
 }
 

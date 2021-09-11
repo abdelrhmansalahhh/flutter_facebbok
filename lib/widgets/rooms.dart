@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook/cofig/palette.dart';
 import 'package:flutter_facebook/models/user_model.dart';
 import 'package:flutter_facebook/widgets/profile_avatar.dart';
+import 'package:flutter_facebook/widgets/responsive.dart';
  
 class Rooms extends StatelessWidget {
   final List<User> onlineUsers;
@@ -13,8 +14,14 @@ class Rooms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return  
-       Container(
+    final bool isDesktop = Responsive.isDesktop(context);
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: isDesktop ? 5.0 : 0.0),
+      elevation: isDesktop ? 1.0 : 0.0,
+      shape: isDesktop
+          ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
+          : null,
+      child: Container(
         height: 60.0,
         color: Colors.white,
         child: ListView.builder(
@@ -41,7 +48,7 @@ class Rooms extends StatelessWidget {
             );
           },
         ),
-        );
+      )  );
       
   }
 }
